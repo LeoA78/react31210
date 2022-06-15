@@ -1,0 +1,33 @@
+
+header{
+    width: 100%;
+    height: 70px;
+    /* background: #bed9d2; */
+    background-image: linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%);
+    box-shadow: 0px 1px 7px 0px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color:#00404a;
+}
+
+
+header .brand img{
+    height: 65px;
+}
+
+header .menu .menu-list{
+display: flex;
+flex-direction: row;
+}
+
+header .menu .menu-list .item{
+    list-style: none;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+header .menu .menu-list .item:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
