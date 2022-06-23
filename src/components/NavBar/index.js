@@ -44,8 +44,8 @@ function NavBar() {
 
           <input type="checkbox" id="check" />
 
-          <label for="check" class="checkbtn">
-            <i class="menu-icon">
+          <label className="checkbtn">
+            <i className="menu-icon">
               <MenuIcon/>
             </i>
           </label>
