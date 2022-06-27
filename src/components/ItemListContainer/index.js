@@ -1,6 +1,7 @@
 /* import ItemCount from "../ItemCount"; */
 import ItemList from "../ItemList/ItemList";
-import { useEffect,useState } from "react";
+import { SyncLoader } from "react-spinners";
+import { useEffect, useState } from "react";
 import { getData } from "../../mocks/fakeApi"
 import "./styles.css";
 
@@ -20,10 +21,10 @@ function ItemListContainer({ greeting }) {
 
   useEffect(() => {
     getData()
-    .then(res => setListProducts(res))
-    .finally(() => setLoading(false));
+      .then(res => setListProducts(res))
+      .finally(() => setLoading(false));
 
-  },[]);
+  }, []);
 
   return (
     <section className="container">
@@ -31,12 +32,14 @@ function ItemListContainer({ greeting }) {
         <ItemCount initial={4} stock={10} onAdd={onAdd}/> */}
 
       {
-      loading 
-      ? <div className='loader'>Cargando...</div> 
-      : <ItemList items={listProducts} />
+        loading
+          ? <div className='loader'>
+            <SyncLoader color="#F98AB1"/>
+          </div>
+          : <ItemList items={listProducts} />
       }
-      
-      
+
+
     </section>
   );
 }

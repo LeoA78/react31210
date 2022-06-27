@@ -11,7 +11,7 @@ function ItemList({items}) {
                 key={id} 
                 title={title} 
                 price={price} 
-                pictureUrl={pictureUrl} 
+                pictureUrl={pictureUrl}
                 description={description} />
                 )
             })}
