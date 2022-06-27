@@ -53,7 +53,7 @@ function NavBar() {
           <ul className="menu-list">
 
             {menuItems.map( item =>
-              <li className="item" key={item.id}><a href={item.link}>{item.label}</a></li>
+              <li className="menu-list-item" key={item.id}><a href={item.link}>{item.label}</a></li>
             )}
         
           </ul>
