@@ -4,7 +4,7 @@ import './styles.css';
 function Item({title,price,pictureUrl,description}) {
 
     return (
-        <div className="item">
+        <div className="item box">
             <div className="item-header">
                 <img src={pictureUrl} alt="" className="item-image" />
             </div>

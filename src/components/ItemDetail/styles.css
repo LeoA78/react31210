@@ -1,0 +1,42 @@
+.detail-content{
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 20px 0;
+    width: 100%;
+    height: 90vh;
+}
+
+.detail-image{
+    width: 60%;
+    background: white;
+    display: flex;
+    justify-content: center;
+}
+
+.detail-title{
+    font-size: 1.7rem;
+    color: rgb(27, 27, 27);
+}
+
+.detail-description{
+    font-size: 1.2rem;
+    color: rgb(27, 27, 27);
+}
+
+.detail-price{
+    font-size: 2rem;
+    color: rgb(27, 27, 27);
+}
+
+.detail-box{
+    border: 1px solid #ccc;
+    background: white;
+    width: 30%;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}

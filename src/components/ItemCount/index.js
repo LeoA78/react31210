@@ -20,12 +20,14 @@ function ItemCount({stock, initial, onAdd}){
         <>
         
         <div className="counter-container">
+            <span>Cantidad disponible: {stock}</span>
             <div className="counter">
                 <button onClick={() => modifyAmount(-1)} className='counter-minus'>-</button>
                 <span>{stock <= 0 ? 'Sin stock' : amount}</span>
                 <button onClick={() => modifyAmount(+1)} className='counter-plus'>+</button>
 
             </div>
+            <button className='buy-btn'>Comprar Ahora</button>
             <button className='add-btn' onClick={stock<=0 ? () => onAdd(0) : () => onAdd(amount)}>Agregar al Carrito</button>
         </div>
         </>
