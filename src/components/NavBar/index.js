@@ -25,11 +25,6 @@ const menuItems = [{
   label: 'Deportivo',
   link: '/category/deportivo',
 },
-{
-  id: 5,
-  label: 'Ofertas',
-  link: '/category/ofertas',
-},
 ]
 
 
