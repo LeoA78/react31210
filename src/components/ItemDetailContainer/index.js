@@ -1,32 +1,32 @@
 import { SyncLoader } from "react-spinners";
 import ItemDetail from "../ItemDetail";
 import { useEffect, useState } from "react";
-import { getData } from "../../mocks/fakeApi"
+import { getItem } from "../../mocks/fakeApi"
 import "./styles.css";
 
 function ItemListContainer() {
 
-  const [listProducts, setListProducts] = useState([]);
+  const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
-  const product = listProducts[1];
+
 
   useEffect(() => {
-    getData()
-      .then(res => setListProducts(res))
+    getItem()
+      .then(res => setProduct(res))
       .finally(() => setLoading(false));
 
   }, []);
 
   return (
     <section className="detail-container">
-      <ItemDetail item={product}/>
-{/*       {
+     
+       {
         loading
           ? <div className='loader'>
             <SyncLoader color="#F98AB1"/>
           </div>
-          : <ItemList items={listProducts} />
-      } */}
+          :  <ItemDetail item={product}/>
+      } 
     </section>
   );
 }
