@@ -2,32 +2,33 @@ import "./navbar.css";
 import logo from "../../assets/images/logo.png";
 import CardWidget from "../CardWidget";
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from "react-router-dom";
 
 
 const menuItems = [{
-  id:1,
+  id: 1,
   label: 'Mujer',
-  link: '#',
+  link: '/category/mujer',
 },
 {
-  id:2,
+  id: 2,
   label: 'Hombre',
-  link: '#',
+  link: '/category/hombre',
 },
 {
-  id:3,
+  id: 3,
   label: 'Infantil',
-  link: '#',
+  link: '/category/infantil',
 },
 {
-  id:4,
+  id: 4,
   label: 'Deportivo',
-  link: '#',
+  link: '/category/deportivo',
 },
 {
-  id:5,
+  id: 5,
   label: 'Ofertas',
-  link: '#',
+  link: '/category/ofertas',
 },
 ]
 
@@ -37,30 +38,34 @@ function NavBar() {
     <>
       <header>
         <div className="brand">
-          <img src={logo} alt="Logo de Vibes" />
+          <Link to='/'><img src={logo} alt="Logo de Vibes" /></Link>
         </div>
+
+
 
         <nav className="menu">
 
           <input type="checkbox" id="check" />
 
-          <label className="checkbtn">
-            <i className="menu-icon">
-              <MenuIcon/>
-            </i>
-          </label>
-
           <ul className="menu-list">
 
-            {menuItems.map( item =>
-              <li className="menu-list-item" key={item.id}><a href={item.link}>{item.label}</a></li>
+            {menuItems.map(item =>
+              <li className="menu-list-item" key={item.id}><Link to={item.link}>{item.label}</Link></li>
             )}
-        
+
           </ul>
 
         </nav>
-        
-        <CardWidget/>
+
+        <div className="box-icons">
+          <CardWidget />
+
+          <label htmlFor="check" className="checkbtn">
+            <i className="menu-icon">
+              <MenuIcon />
+            </i>
+          </label>
+        </div>
 
       </header>
     </>

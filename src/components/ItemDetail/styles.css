@@ -5,6 +5,7 @@
     padding: 20px 0;
     width: 100%;
     height: 90vh;
+    margin-top: 70px;
 }
 
 .detail-image{
@@ -12,10 +13,13 @@
     background: white;
     display: flex;
     justify-content: center;
+
 }
 
 .detail-image img{
     height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .detail-title{

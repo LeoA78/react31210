@@ -1,10 +1,11 @@
+import {Link} from 'react-router-dom';
 import './styles.css';
 
 
-function Item({title,price,pictureUrl,description}) {
+function Item({id,title,price,pictureUrl,description}) {
 
     return (
-        <div className="item box">
+        <Link to={'/product/' + id} className="item box">
             <div className="item-header">
                 <img src={pictureUrl} alt="" className="item-image" />
             </div>
@@ -13,7 +14,7 @@ function Item({title,price,pictureUrl,description}) {
                 <span className="item-title">{title}</span>
                 <span className="item-description">{description}</span>
             </div>
-        </div>
+        </Link>
     );
 }
 

@@ -5,7 +5,8 @@ header {
   box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  position: fixed;
 }
 
 header .brand img {
@@ -32,19 +33,28 @@ header .menu .menu-list .menu-list-item a{
     color: #00404a;
 }
 
+
+
 #check,
 .checkbtn {
   display: none;
 }
 
 @media (max-width: 768px) {
+
+  header .box-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 17%;
+  }	
+
   .checkbtn {
     display: block;
   }
 
   .menu-icon {
     display: block;
-    position: fixed;
     top: 25px;
     right: 20px;
     cursor: pointer;
@@ -53,13 +63,13 @@ header .menu .menu-list .menu-list-item a{
   .menu .menu-list {
     display: flex;
     flex-direction: column;
-    position: fixed;
     top: 70px;
     left: -120%;
     background: rgba(34, 34, 34, 0.6);
     width: 100%;
     margin: 0;
     padding: 0;
+    position: fixed;
   }
   .menu .menu-list .menu-list-item {
     margin: 0;

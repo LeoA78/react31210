@@ -2,13 +2,15 @@
 import ItemList from "../ItemList/ItemList";
 import { SyncLoader } from "react-spinners";
 import { useEffect, useState } from "react";
-import { getData } from "../../mocks/fakeApi"
+import { getData } from "../../mocks/fakeApi";
+import {useParams} from "react-router-dom";
 import "./styles.css";
 
 function ItemListContainer({ greeting }) {
 
   const [listProducts, setListProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {categoryId} = useParams();
 
   /*   const onAdd = (amount) =>{
       if(amount === 0){
@@ -20,11 +22,14 @@ function ItemListContainer({ greeting }) {
 
 
   useEffect(() => {
-    getData()
+    
+    setLoading(true);
+
+    getData(categoryId)
       .then(res => setListProducts(res))
       .finally(() => setLoading(false));
 
-  }, []);
+  }, [categoryId]);
 
   return (
     <section className="container">

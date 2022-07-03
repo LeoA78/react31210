@@ -1,21 +1,23 @@
 import { SyncLoader } from "react-spinners";
 import ItemDetail from "../ItemDetail";
 import { useEffect, useState } from "react";
-import { getItem } from "../../mocks/fakeApi"
+import { getItem } from "../../mocks/fakeApi";
+import { useParams } from "react-router-dom";
 import "./styles.css";
 
 function ItemListContainer() {
 
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const {productId} = useParams();
 
   useEffect(() => {
-    getItem()
+    setLoading(true);
+    getItem(productId)
       .then(res => setProduct(res))
       .finally(() => setLoading(false));
 
-  }, []);
+  }, [productId]);
 
   return (
     <section className="detail-container">
