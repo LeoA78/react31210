@@ -25,7 +25,7 @@ function ItemListContainer() {
        {
         loading
           ? <div className='loader'>
-            <SyncLoader color="#F98AB1"/>
+            <SyncLoader color="#9381FF"/>
           </div>
           :  <ItemDetail item={product}/>
       } 

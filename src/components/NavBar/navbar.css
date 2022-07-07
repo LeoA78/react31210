@@ -1,16 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 header {
   width: 100%;
   height: 70px;
-  background-image: linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%);
+  background: #fafafa;
   box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 40px;
   position: fixed;
 }
 
+header .container-menu{
+  width: 40%;
+  display: flex;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  
+}
+
+header .container-brand{
+  width: 20%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+header .container-icons{
+  width: 40%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 header .brand img {
-  height: 65px;
+  height: 45px;
 }
 
 header .menu .menu-list {
@@ -21,7 +45,7 @@ header .menu .menu-list {
 header .menu .menu-list .menu-list-item {
   list-style: none;
   margin-left: 15px;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 header .menu .menu-list .menu-list-item:hover {
@@ -30,17 +54,19 @@ header .menu .menu-list .menu-list-item:hover {
 
 header .menu .menu-list .menu-list-item a{
     text-decoration: none;
-    color: #00404a;
+    color: black;
 }
 
-
+.active {
+  font-weight: bold;
+}
 
 #check,
 .checkbtn {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
 
   header .box-icons {
     display: flex;

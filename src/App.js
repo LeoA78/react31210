@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
+import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Route path="/product/:productId" element={<ItemDetailContainer />} />
 
       </Routes>
-
+      <Footer/>
     </BrowserRouter>
   );
 }
