@@ -1,10 +1,10 @@
 .counter-container {
   border-radius: 5%;
-  width: 100%;
-  height: 200px;
   display: flex;
   flex-direction: column;
+  height: 200px;
   justify-content: space-around;
+  width: 100%;
 
 }
 
@@ -14,33 +14,32 @@
 }
 
 .counter-container .counter {
+  background: white;
   border: 1px solid gray;
   border-radius: 4px;
   display: flex;
+  font-size: 22px;
   justify-content: space-around;
   padding: 4px;
-  background: white;
-  font-size: 22px;
 }
 
 .counter-container .buy-btn,
 .counter-container .add-btn{
-    padding: 12px;
-    border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
-    background: rgba(147, 129, 255,.8);
+  background: rgba(147, 129, 255,.8);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
 }
 
 .counter-container .add-btn{
-  color: rgb(147, 129, 255);
   background: rgb(147, 129, 255,.2);
+  color: rgb(147, 129, 255);
 }
 
 .counter-container .buy-btn:hover{
   background: rgb(147, 129, 255);
-  
 }
 
 .counter-container .add-btn:hover{
@@ -49,10 +48,10 @@
 
 .counter-container .counter .counter-minus,
 .counter-container .counter .counter-plus {
-  border: none;
   background: none;
-  font-size: 1.7rem;
+  border: none;
   cursor: pointer;
+  font-size: 1.7rem;
 }
 
 .counter-container .counter .counter-minus:hover {

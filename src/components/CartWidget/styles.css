@@ -1,15 +1,14 @@
 .cart-btn{
+    align-items: center;
+    background: none;
+    display: flex;
     border: none;
     border-radius: 4px;
     padding: 5px;
-    display: flex;
-    align-items: center;
-    background: none;
 
 }
 
 .shopping-counter{
-    color: black;
-    font-size: 1.1rem;
     color: gray;
+    font-size: 1.1rem;
 }

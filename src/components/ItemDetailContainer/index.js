@@ -16,12 +16,10 @@ function ItemListContainer() {
     getItem(productId)
       .then(res => setProduct(res))
       .finally(() => setLoading(false));
-
   }, [productId]);
 
   return (
     <section className="detail-container">
-     
        {
         loading
           ? <div className='loader'>

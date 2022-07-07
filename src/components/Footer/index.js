@@ -48,7 +48,8 @@ function Footer() {
                 </section>
 
                 <section className='footer-me'>
-                    <p> 2022 | Diseñado con 🤍 para Desafios Coder | Leonel Altamirano</p>
+                    <p className='footer-me-pc'> 2022 | Diseñado con 🤍 para Desafios Coder | Leonel Altamirano</p>
+                    <p className='footer-me-mobile'> Diseñado con 🤍 por Leonel Altamirano</p>
                 </section>
 
             </footer>

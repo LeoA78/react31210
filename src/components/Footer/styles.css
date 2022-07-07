@@ -28,16 +28,16 @@ footer{
 }
 
 .footer-contact{
+    align-items: center;
     display: flex;
     flex-direction: column;
     width: 30%;
-    align-items: center;
 }
 
 .footer-contact .info {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
 .footer-contact .info span{
@@ -62,6 +62,8 @@ footer{
 
 .footer-me{
     border-top: 1px solid white;
+    color: rgb(50, 50, 50);
+    font-weight: bold;
     margin: 0 auto;
     padding: 8px 0;
     width: 80%;
@@ -72,5 +74,40 @@ footer{
     text-align: center;
 }
 
+.footer-me-mobile{
+    display: none;
+}
 
 
+
+@media (max-width: 900px) {
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-about{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .footer-about p{
+        display: none;
+    }
+
+    .footer-social{
+        width: 100%;
+    }
+
+    .footer-contact{
+        display: none;
+    }
+    
+    .footer-me-pc{
+        display: none;
+    }
+
+    .footer-me-mobile{
+        display: block;
+    }
+
+}
