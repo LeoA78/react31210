@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo.png";
 import CartWidget from "../CartWidget";
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink, Link } from "react-router-dom";
+import { useState } from "react";
 
 
 const menuItems = [{
@@ -29,11 +30,28 @@ const menuItems = [{
 
 
 function NavBar() {
+
+  const [closed, setClosed] = useState(true);
+
+    window.onscroll = function() {
+      if(window.scrollY > 100){
+        if(closed){
+          setClosed(false);
+        }
+      }else{
+        if(!closed){
+          setClosed(true);
+        }
+      }
+    };
+
+  
+
   return (
     <>
-      <header>
+      <header className={closed ? 'extend-header' : ''}>
 
-        <section className="container-menu">
+        <section className='container-menu'>
           <nav className="menu">
 
             <input type="checkbox" id="check" />

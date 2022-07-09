@@ -12,15 +12,6 @@ function ItemListContainer({ greeting }) {
   const [loading, setLoading] = useState(true);
   const {categoryId} = useParams();
 
-  /*   const onAdd = (amount) =>{
-      if(amount === 0){
-        console.log(`No hay stock disponible`)
-        return;
-      }
-      console.log(`Agregaste ${amount} productos al carrito`)
-    } */
-
-
   useEffect(() => {
     
     setLoading(true);
@@ -33,9 +24,6 @@ function ItemListContainer({ greeting }) {
 
   return (
     <section className="container">
-      {/*         <h2>{greeting}</h2>
-        <ItemCount initial={4} stock={10} onAdd={onAdd}/> */}
-
       {
         loading
           ? <div className='loader'>
@@ -43,7 +31,6 @@ function ItemListContainer({ greeting }) {
           </div>
           : <ItemList items={listProducts} />
       }
-
 
     </section>
   );

@@ -4,12 +4,24 @@ header {
   background: #fafafa;
   box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.2);
   display: flex;
-  height: 70px;
+  height: 60px;
   justify-content: space-between;
   padding: 0 40px;
   position: fixed;
+  transition: all 0.5s ease-in-out;
   width: 100%;
 }
+
+.extend-header{
+  height: 80px;
+  transition: all 0.5s ease-in-out;
+}
+
+.extend-header img{
+height: 40px !important;
+transition: all 0.5s ease-in-out;
+}
+
 
 header .container-menu{
   display: flex;
@@ -33,7 +45,8 @@ header .container-icons{
 }
 
 header .brand img {
-  height: 45px;
+  height: 35px;
+  transition: all 0.5s ease-in-out;
 }
 
 header .menu .menu-list {
@@ -93,9 +106,14 @@ header .menu .menu-list .menu-list-item a{
     left: -120%;
     padding: 0;
     position: fixed;
-    top: 70px;
+    top: 60px;
     width: 100%;
   }
+
+  .extend-header .menu .menu-list{
+    top: 80px;
+  }
+
   .menu .menu-list .menu-list-item {
     margin: 0;
     padding: 1rem;
