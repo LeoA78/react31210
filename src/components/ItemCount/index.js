@@ -1,6 +1,6 @@
 import './styles.css';
 
-function ItemCount({onAdd, modifyAmount, amount, stock}) {
+function ItemCount({onAdd, modifyAmount, amount, stock}) {  
 
     return(
 

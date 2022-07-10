@@ -1,16 +1,17 @@
 import './styles.css';
 import ItemCount from '../ItemCount';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { context } from '../CartContext';
 
 function ItemDetail({ item }) {
     const [amount, setAmount] = useState(1);
     const [visibleCounter, setVisibleCounter] = useState(true);
+    const { addToCart } = useContext(context);
 
     const onAdd = (qty) => {
-        setAmount(qty);
         setVisibleCounter(false);
-        alert('Se agregaron ' + amount + ' unidades al carrito');
+        addToCart({...item, amount: qty});
     }
 
     const modifyAmount = (value) => {
@@ -20,10 +21,6 @@ function ItemDetail({ item }) {
            setAmount(amount + value);
         }
     }
-
-    useEffect(() => {
-        console.log('Cantidad -> ',amount)
-    }, [amount]);
 
     return (
 

@@ -6,7 +6,7 @@ function Cart(){
     return(
         <div className="container-cart">
             <h2>Esté será el carrito de compras</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat maxime fugit perspiciatis tempora facilis hic cum iste quasi ipsa error animi ab, exercitationem numquam! Recusandae numquam eius ad necessitatibus maiores?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum voluptates temporibus nulla! Labore animi, ducimus autem doloribus eveniet nam consectetur repellat, aliquam beatae deserunt quasi. Doloremque eum qui porro sunt?</p>
         </div>
     );
 }
