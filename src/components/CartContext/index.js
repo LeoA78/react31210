@@ -24,6 +24,14 @@ function CustomProvider({ children }) {
     const getAmount = () => {
         return cart.reduce((acc, item) => acc + item.amount, 0);
     }
+
+    const getTotal = () => {
+        return cart.reduce((acc, item) => acc + item.price * item.amount, 0);
+    }
+
+    const getCart = () => {
+        return cart;
+    }
     
     const clearCart = () => {
         setCart([]);
@@ -45,7 +53,7 @@ function CustomProvider({ children }) {
     }
 
     return (
-        <Provider value={{addToCart,getAmount, clearCart, removeFromCart}}> 
+        <Provider value={{addToCart,getAmount, clearCart, removeFromCart, getCart, getTotal}}> 
          {children} 
          </Provider>
 

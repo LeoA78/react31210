@@ -1,12 +1,35 @@
-import React from "react";
+import CartItem from "../CartItem";
 import './styles.css';
+import { useContext } from "react";
+import { context } from "../CartContext";
 
 
-function Cart(){
-    return(
-        <div className="container-cart">
-            <h2>Esté será el carrito de compras</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum voluptates temporibus nulla! Labore animi, ducimus autem doloribus eveniet nam consectetur repellat, aliquam beatae deserunt quasi. Doloremque eum qui porro sunt?</p>
+
+function Cart() {
+
+    const { getCart, getTotal } = useContext(context);
+
+    return (
+        <div className="cart-container">
+
+            <div className="cart box">
+
+                <div className="cart-header">
+                    <h2>Carrito de Compras</h2>
+                </div>
+
+                <div className="cart-body">
+ 
+                    { getCart().map( item => {
+                        return (<CartItem key={item.id} item={item} />)
+                    })} 
+                </div>
+
+                <div className="cart-footer">
+                    <h2>El Total es: ${ getTotal() }</h2>
+                </div>
+            </div>
+
         </div>
     );
 }

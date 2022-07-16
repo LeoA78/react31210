@@ -33,7 +33,7 @@ function NavBar() {
 
   const [closed, setClosed] = useState(true);
 
-    window.onscroll = function() {
+    window.onscroll = function() { /* Función para cambiar tamaño del navbar */
       if(window.scrollY > 100){
         if(closed){
           setClosed(false);

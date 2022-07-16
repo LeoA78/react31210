@@ -1,5 +1,6 @@
 import './styles.css';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import { Link } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { context } from '../CartContext';
 
@@ -9,12 +10,12 @@ function CartWidget () {
 
 return (
 
-<button className='cart-btn'>
+<Link to='/cart' className='cart-btn'>
 <LocalMallOutlinedIcon sx={{ fontSize: 28 }} />
 <div className='shopping-counter'>
 ({getAmount()})
 </div>
-</button>
+</Link>
 
 );
 }
