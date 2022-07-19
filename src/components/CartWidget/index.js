@@ -13,7 +13,7 @@ return (
 <Link to='/cart' className='cart-btn'>
 <LocalMallOutlinedIcon sx={{ fontSize: 28 }} />
 <div className='shopping-counter'>
-({getAmount()})
+{getAmount() > 0 ? `(${getAmount()})` : ''}
 </div>
 </Link>
 

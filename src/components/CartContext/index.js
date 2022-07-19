@@ -17,8 +17,12 @@ function CustomProvider({ children }) {
     }
     
     const removeFromCart = (item) => {
+        const isConfirmed = window.confirm(`¿Estás seguro que deseas eliminar ${item.title} del carrito?`);
+        
+        if (isConfirmed) {
         const newCart = cart.filter(cartItem => cartItem.id !== item.id);
         setCart(newCart);
+        }
     }
     
     const getAmount = () => {
@@ -40,7 +44,7 @@ function CustomProvider({ children }) {
     const updateCart = (item) => {
         const newCart = cart.map(cartItem => {
             if (cartItem.id === item.id) {
-                cartItem.amount += item.amount;
+                cartItem.amount = item.amount;
             }
             return cartItem;
         }
@@ -53,7 +57,7 @@ function CustomProvider({ children }) {
     }
 
     return (
-        <Provider value={{addToCart,getAmount, clearCart, removeFromCart, getCart, getTotal}}> 
+        <Provider value={{addToCart,getAmount, clearCart, removeFromCart, getCart, getTotal, updateCart}}> 
          {children} 
          </Provider>
 

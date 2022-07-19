@@ -33,3 +33,34 @@
     color: rgb(75, 75, 75);
     padding: 1% 0%;
 }
+
+.cart-empty{
+    color: rgb(75, 75, 75);
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    text-align: center;
+    background: white;
+
+}
+
+.cart-empty-title{
+    
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.cart-empty-subtitle{
+    color: rgb(150, 150, 150);
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+.cart-empty-subtitle:hover{
+    text-decoration: underline;
+}

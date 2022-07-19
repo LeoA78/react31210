@@ -1,10 +1,16 @@
 import React from 'react'
 import './styles.css'
 
-function CartItem({ item }) {
-    console.log('Este es el  stock ->',item.stock);
+function CartItem({ item, updateCart, removeFromCart }) {
+
+    const handleChange = (e) => {
+        const newItem = item.amount = parseInt(e.target.value);
+        updateCart(newItem);
+    }
+
+
     return (
-        
+
         <div className="cart-item">
 
             <div className="cart-item-image">
@@ -14,7 +20,21 @@ function CartItem({ item }) {
             <div className="cart-item-details">
                 <h2>{item.title}</h2>
                 <p>{item.description}</p>
-                <p>Cantidad: {item.amount}</p>
+
+                <label>
+
+                    Cantidad: 
+                    <input
+                        className='cart-item-amount'
+                        onChange={(e) => handleChange(e)}
+                        type="number"
+                        min="1"
+                        value={item.amount}
+                        max={item.stock} />
+
+                </label>
+
+                <span className="cart-item-delete" onClick={() => removeFromCart(item)}>Eliminar Producto</span>
             </div>
 
             <div className="cart-item-price">

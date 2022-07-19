@@ -2,12 +2,25 @@ import CartItem from "../CartItem";
 import './styles.css';
 import { useContext } from "react";
 import { context } from "../CartContext";
+import { Link } from "react-router-dom";
 
 
 
 function Cart() {
 
-    const { getCart, getTotal } = useContext(context);
+    const { getCart, getTotal, updateCart, removeFromCart } = useContext(context);
+    console.log(getCart)
+
+    if (getCart().length === 0) {
+        return (
+            <div className="cart-container">
+                <div className="cart-empty box">
+                    <h2 className="cart-empty-title">Tu carrito está vacío</h2>
+                    <Link to='/' className="cart-empty-subtitle">¿Por qué no echas un vistazo en la tienda?</Link>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="cart-container">
@@ -19,14 +32,14 @@ function Cart() {
                 </div>
 
                 <div className="cart-body">
- 
-                    { getCart().map( item => {
-                        return (<CartItem key={item.id} item={item} />)
-                    })} 
+
+                    {getCart().map(item => {
+                        return (<CartItem key={item.id} item={item} updateCart={updateCart} removeFromCart={removeFromCart} />)
+                    })}
                 </div>
 
                 <div className="cart-footer">
-                    <h2>El Total es: ${ getTotal() }</h2>
+                    <h2>El Total es: ${getTotal()}</h2>
                 </div>
             </div>
 
