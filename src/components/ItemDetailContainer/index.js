@@ -1,32 +1,37 @@
 import { SyncLoader } from "react-spinners";
 import ItemDetail from "../ItemDetail";
 import { useEffect, useState } from "react";
-import { getItem } from "../../mocks/fakeApi";
 import { useParams } from "react-router-dom";
+import { getProduct } from "../../firebase/firebase.js";
 import "./styles.css";
 
 function ItemListContainer() {
 
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {productId} = useParams();
+  const { productId } = useParams();
 
   useEffect(() => {
+
+
     setLoading(true);
-    getItem(productId)
+
+    getProduct(productId) //Esto viene de Firebase
       .then(res => setProduct(res))
       .finally(() => setLoading(false));
+
+
   }, [productId]);
 
   return (
     <section className="detail-container">
-       {
+      {
         loading
           ? <div className='loader'>
-            <SyncLoader color="#9381FF"/>
+            <SyncLoader color="#9381FF" />
           </div>
-          :  <ItemDetail item={product}/>
-      } 
+          : <ItemDetail item={product} />
+      }
     </section>
   );
 }

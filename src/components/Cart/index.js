@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function Cart() {
 
     const { getCart, getTotal, updateCart, removeFromCart } = useContext(context);
-    console.log(getCart)
+
 
     if (getCart().length === 0) {
         return (

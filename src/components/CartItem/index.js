@@ -4,8 +4,13 @@ import './styles.css'
 function CartItem({ item, updateCart, removeFromCart }) {
 
     const handleChange = (e) => {
+        const { value } = e.target;
+
+        if( value <= item.stock && value > 0 ) {
         const newItem = item.amount = parseInt(e.target.value);
         updateCart(newItem);
+        } //COLOCAR UN ESTADO ACÁ   PARA QUE SE ACTUALIZE EL CART
+
     }
 
 

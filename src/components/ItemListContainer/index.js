@@ -2,8 +2,9 @@
 import ItemList from "../ItemList/ItemList";
 import { SyncLoader } from "react-spinners";
 import { useEffect, useState } from "react";
-import { getData } from "../../mocks/fakeApi";
+import { getProducts } from "../../firebase/firebase.js";
 import {useParams} from "react-router-dom";
+
 import "./styles.css";
 
 function ItemListContainer({ greeting }) {
@@ -12,13 +13,16 @@ function ItemListContainer({ greeting }) {
   const [loading, setLoading] = useState(true);
   const {categoryId} = useParams();
 
+
   useEffect(() => {
+
     
     setLoading(true);
 
-    getData(categoryId)
-      .then(res => setListProducts(res))
+    getProducts(categoryId)
+      .then(result => setListProducts(result))
       .finally(() => setLoading(false));
+      
 
   }, [categoryId]);
 

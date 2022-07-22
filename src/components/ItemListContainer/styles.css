@@ -1,6 +1,7 @@
 
 .container {
     padding: 2% 10%;
+    min-height: 700px;
 }
 
 .loader{

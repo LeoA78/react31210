@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState} from "react";
 
 
 export const context = createContext();
@@ -7,14 +7,11 @@ const { Provider } = context;
 
 function CustomProvider({ children }) {
     const [cart, setCart] = useState([]);
-
-    useEffect(() => { // Sólo para ir viendo en el console el estado del carrito
-        console.log('Carrito -> ', cart);
-    }, [cart]);
-
+    
     const addToCart = (item) => {
         isInCart(item) ? updateCart(item) : setCart([...cart, item]);
     }
+    
     
     const removeFromCart = (item) => {
         const isConfirmed = window.confirm(`¿Estás seguro que deseas eliminar ${item.title} del carrito?`);
@@ -26,16 +23,17 @@ function CustomProvider({ children }) {
     }
     
     const getAmount = () => {
-        return cart.reduce((acc, item) => acc + item.amount, 0);
+        return cart.reduce((acc, item) => acc + item.amount, 0); //Cambiar esto por estados como dijo el profesor
     }
 
     const getTotal = () => {
-        return cart.reduce((acc, item) => acc + item.price * item.amount, 0);
+        return cart.reduce((acc, item) => acc + item.price * item.amount, 0); //Cambiar esto por estados como dijo el profesor
     }
 
     const getCart = () => {
         return cart;
     }
+
     
     const clearCart = () => {
         setCart([]);
