@@ -10,7 +10,6 @@ function Cart() {
 
     const { getCart, getTotal, updateCart, removeFromCart } = useContext(context);
 
-
     if (getCart().length === 0) {
         return (
             <div className="cart-container">
@@ -40,7 +39,9 @@ function Cart() {
 
                 <div className="cart-footer">
                     <h2>El Total es: ${getTotal()}</h2>
+                    <Link to='/checkout'>Finalizar Compra</Link>
                 </div>
+
             </div>
 
         </div>

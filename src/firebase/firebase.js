@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { addDoc, getFirestore } from "firebase/firestore";
 import { getDocs, collection, query, where, doc, getDoc } from "firebase/firestore";
 
 
@@ -24,8 +24,8 @@ export async function getProducts(idCategory) {
   try {
 
     const productsCollection = idCategory
-      ? query(collection(db, 'productos'), where('category', '==', idCategory))
-      : collection(db, 'productos');
+      ? query(collection(db, 'products'), where('category', '==', idCategory))
+      : collection(db, 'products');
 
     const productsDB = await getDocs(productsCollection)
       .then(result => {
@@ -47,7 +47,7 @@ export async function getProducts(idCategory) {
 export async function getProduct(productId) {
 
   try {
-    const productCollection = doc(db, 'productos', productId);
+    const productCollection = doc(db, 'products', productId);
     const product = await getDoc(productCollection);
 
     return { ...product.data(), id: product.id };
@@ -57,6 +57,17 @@ export async function getProduct(productId) {
   }
 
 }
+
+export async function checkout(collectionName, data) {
+  const ventasCollection = collection(db, collectionName );
+  
+  const checkout = await addDoc(ventasCollection, {
+    ...data,
+  })
+
+  return checkout;
+}
+
 
 
 
