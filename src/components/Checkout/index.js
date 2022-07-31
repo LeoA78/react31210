@@ -1,5 +1,5 @@
 import './styles.css';
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { context } from "../CartContext";
 import { Link } from "react-router-dom";
 import { serverTimestamp } from 'firebase/firestore';
@@ -19,11 +19,24 @@ function Checkout() {
         phone: '',
     });
 
-    const [stateSales, setStateSales] = useState([]);
+    const [stateSales, setStateSales] = useState('');
+    const [activeButton, setActiveButton] = useState(false);
+
+
+    useEffect(() => {
+       verifyBuyer(buyer) ? setActiveButton(true) : setActiveButton(false);
+    }, [buyer])
+
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!verifyemail(buyer)) {
+            setStateSales('Las direcciones de correo no coinciden');
+            return;
+        }
+
         if (verifyBuyer(buyer)) {
             const order = {
                 buyer: buyer,
@@ -33,25 +46,20 @@ function Checkout() {
             }
             checkout('sales', order)
                 .then(res => {
-                    setStateSales(`Gracias por realizar la compra. Su identificador es ${res.id}. Serás redireccionado en 20 segundos`);
+                    setStateSales(`Gracias por realizar la compra. Su identificador es ${res.id}. Serás redireccionado en 15 segundos`);
                 }).finally(() => {
 
                     setTimeout(() => {
                         clearCart();
-                    }, 20000);
+                    }, 15000);
                 })
 
-
         } else {
-            console.log('Dio ->', verifyBuyer(buyer))
             setStateSales('Por favor, complete todos los campos');
         }
     }
 
-
-
-
-    const verifyBuyer = (buyer) => { //Retorna true si todos los campos estan llenos
+    const verifyBuyer = (buyer) => {
         let verify = true;
 
         Object.values(buyer).forEach(value => {
@@ -63,11 +71,9 @@ function Checkout() {
         return verify;
     }
 
-
-    /* useEffect(() => {
-        console.log('Venta realizada ->', sale)
-        console.log('Comprador', buyer)
-    }, [buyer]) */
+    const verifyemail = (buyer) => {
+        return buyer.email === buyer.verifyEmail;
+    };
 
 
     const handleInputChange = (e) => {
@@ -105,7 +111,8 @@ function Checkout() {
                         <input onChange={handleInputChange} type="tel" name="phone" placeholder="Teléfono" />
                         <input onChange={handleInputChange} type="text" name="address" placeholder="Dirección" />
                         <input onChange={handleInputChange} type="mail" name="email" placeholder="Correo Electrónico" />
-                        <button className='buy-btn' onClick={(e) => handleSubmit(e)}>Realizar Compra</button>
+                        <input onChange={handleInputChange} type="mail" name="verifyEmail" placeholder="Verifica tu Correo Electrónico" />
+                        {activeButton && <button className='buy-btn' onClick={(e) => handleSubmit(e)}>Realizar Compra</button>}
                     </form>
                 </div>
 

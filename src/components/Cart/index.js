@@ -12,10 +12,10 @@ function Cart() {
 
     if (getCart().length === 0) {
         return (
-            <div className="cart-container">
-                <div className="cart-empty box">
-                    <h2 className="cart-empty-title">Tu carrito está vacío</h2>
-                    <Link to='/' className="cart-empty-subtitle">¿Por qué no echas un vistazo en la tienda?</Link>
+            <div className="alert-container">
+                <div className="alert-message box">
+                    <h2 className="alert-title">Tu carrito está vacío</h2>
+                    <Link to='/' className="alert-subtitle">¿Por qué no echas un vistazo en la tienda?</Link>
                 </div>
             </div>
         )
@@ -39,7 +39,7 @@ function Cart() {
 
                 <div className="cart-footer">
                     <h2>El Total es: ${getTotal()}</h2>
-                    <Link to='/checkout'>Finalizar Compra</Link>
+                    <Link className='buy-btn' to='/checkout'>Finalizar Compra</Link>
                 </div>
 
             </div>

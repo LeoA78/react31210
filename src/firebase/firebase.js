@@ -4,12 +4,12 @@ import { getDocs, collection, query, where, doc, getDoc } from "firebase/firesto
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCIwv9wgoDbry9AyeCsQmGuUuK5dw_fFg0",
-  authDomain: "comisioncoder.firebaseapp.com",
-  projectId: "comisioncoder",
-  storageBucket: "comisioncoder.appspot.com",
-  messagingSenderId: "544890138126",
-  appId: "1:544890138126:web:a19c73827e7abeff41d65f"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.EACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
@@ -44,11 +44,16 @@ export async function getProducts(idCategory) {
 
 }
 
+
 export async function getProduct(productId) {
 
   try {
     const productCollection = doc(db, 'products', productId);
     const product = await getDoc(productCollection);
+
+    if(!product.data()){
+      return [];
+    }
 
     return { ...product.data(), id: product.id };
     
@@ -58,10 +63,34 @@ export async function getProduct(productId) {
 
 }
 
+
+export async function getCategories() {
+  try {
+
+    const categoriesCollection = collection(db, 'categories');
+
+    const categoriesDB = await getDocs(categoriesCollection)
+      .then(result => {
+        const categories = result.docs.map(category => {
+          return { ...category.data(), id: category.id };
+        });
+
+        return categories;
+      })
+
+    return categoriesDB;
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+
 export async function checkout(collectionName, data) {
-  const ventasCollection = collection(db, collectionName );
+  const checkoutCollection = collection(db, collectionName );
   
-  const checkout = await addDoc(ventasCollection, {
+  const checkout = await addDoc(checkoutCollection, {
     ...data,
   })
 

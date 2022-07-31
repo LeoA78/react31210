@@ -16,10 +16,9 @@ function ItemListContainer() {
 
     setLoading(true);
 
-    getProduct(productId) //Esto viene de Firebase
+    getProduct(productId) 
       .then(res => setProduct(res))
       .finally(() => setLoading(false));
-
 
   }, [productId]);
 

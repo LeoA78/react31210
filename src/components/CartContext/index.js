@@ -42,7 +42,7 @@ function CustomProvider({ children }) {
     const updateCart = (item) => {
         const newCart = cart.map(cartItem => {
             if (cartItem.id === item.id) {
-                cartItem.amount = item.amount;
+                cartItem.amount += item.amount;
             }
             return cartItem;
         }

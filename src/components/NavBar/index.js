@@ -3,35 +3,23 @@ import logo from "../../assets/images/logo.png";
 import CartWidget from "../CartWidget";
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink, Link } from "react-router-dom";
-import { useState } from "react";
-
-
-const menuItems = [{
-  id: 1,
-  label: 'Mujer',
-  link: '/category/mujer',
-},
-{
-  id: 2,
-  label: 'Hombre',
-  link: '/category/hombre',
-},
-{
-  id: 3,
-  label: 'Infantil',
-  link: '/category/infantil',
-},
-{
-  id: 4,
-  label: 'Deportivo',
-  link: '/category/deportivo',
-},
-]
+import { useState, useEffect } from "react";
+import { getCategories } from "../../firebase/firebase";
 
 
 function NavBar() {
 
   const [closed, setClosed] = useState(true);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategories().then(result => {
+      setCategories(result);
+    }
+    )
+  }, []);
+
+
 
     window.onscroll = function() { /* Función para cambiar tamaño del navbar */
       if(window.scrollY > 100){
@@ -45,7 +33,6 @@ function NavBar() {
       }
     };
 
-  
 
   return (
     <>
@@ -62,8 +49,8 @@ function NavBar() {
             </label>
             <ul className="menu-list">
 
-              {menuItems.map(item =>
-                <li className="menu-list-item" key={item.id}><NavLink to={item.link}>{item.label}</NavLink></li>
+              {categories.map(item =>
+                <li className="menu-list-item" key={item.id}><NavLink to={item.link}>{item.name}</NavLink></li>
               )}
 
             </ul>
@@ -84,10 +71,6 @@ function NavBar() {
 
           </div>
         </section>
-
-
-
-
 
       </header>
     </>
