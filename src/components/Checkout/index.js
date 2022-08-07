@@ -48,12 +48,13 @@ function Checkout() {
             checkout('sales', order)
                 .then(res => {
                     setStateSales(`Gracias por realizar la compra. Su identificador es ${res.id}. Serás redireccionado en 15 segundos`);
+                    setActiveButton(false)
                 }).finally(() => {
 
                     setTimeout(() => {
                         navigate('/');
                         clearCart();
-                    }, 15000);
+                    }, 15000);<stroge></stroge>
                 })
 
         } else {
