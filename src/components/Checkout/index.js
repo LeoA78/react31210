@@ -1,7 +1,7 @@
 import './styles.css';
 import { useContext, useState, useEffect } from "react";
 import { context } from "../CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { serverTimestamp } from 'firebase/firestore';
 import { checkout } from '../../firebase/firebase';
 
@@ -10,6 +10,7 @@ import { checkout } from '../../firebase/firebase';
 function Checkout() {
 
     const { getCart, getTotal, clearCart } = useContext(context);
+    const navigate = useNavigate();
 
     const [buyer, setBuyer] = useState({
         name: '',
@@ -50,6 +51,7 @@ function Checkout() {
                 }).finally(() => {
 
                     setTimeout(() => {
+                        navigate('/');
                         clearCart();
                     }, 15000);
                 })

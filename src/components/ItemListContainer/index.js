@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 
 import "./styles.css";
 
-function ItemListContainer({ greeting }) {
+function ItemListContainer() {
 
   const [listProducts, setListProducts] = useState([]);
   const [loading, setLoading] = useState(true);

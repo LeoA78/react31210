@@ -32,7 +32,6 @@ function ItemDetail({ item }) {
             setAmount(amount + value);
         }
     }
-
     if (!existProduct) {
         return (
 

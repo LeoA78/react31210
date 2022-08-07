@@ -23,11 +23,11 @@ function CustomProvider({ children }) {
     }
     
     const getAmount = () => {
-        return cart.reduce((acc, item) => acc + item.amount, 0); //Cambiar esto por estados como dijo el profesor
+        return cart.reduce((acc, item) => acc + item.amount, 0);
     }
 
     const getTotal = () => {
-        return cart.reduce((acc, item) => acc + item.price * item.amount, 0); //Cambiar esto por estados como dijo el profesor
+        return cart.reduce((acc, item) => acc + item.price * item.amount, 0); 
     }
 
     const getCart = () => {
