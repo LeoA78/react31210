@@ -14,12 +14,8 @@ function CustomProvider({ children }) {
     
     
     const removeFromCart = (item) => {
-        const isConfirmed = window.confirm(`¿Estás seguro que deseas eliminar ${item.title} del carrito?`);
-        
-        if (isConfirmed) {
         const newCart = cart.filter(cartItem => cartItem.id !== item.id);
         setCart(newCart);
-        }
     }
     
     const getAmount = () => {

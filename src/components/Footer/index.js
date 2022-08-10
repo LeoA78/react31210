@@ -6,7 +6,6 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import CallIcon from '@mui/icons-material/Call';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import logo from '../../assets/images/logo-white.png';
 
 function Footer() {
     return (
@@ -15,7 +14,7 @@ function Footer() {
                 <section className="footer-container">
 
                     <article className="footer-about">
-                        <img src={logo} alt="" />
+                        <img src="https://i.ibb.co/crL8jf2/logo-white.png" alt="" />
                         <p>Esta es la Tienda Online de Andromeda. En nuestra tienda podras encontrar todo tipo de prendas y accesorios. </p>
                     </article>
 

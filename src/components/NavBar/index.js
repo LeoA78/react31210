@@ -1,5 +1,4 @@
 import "./navbar.css";
-import logo from "../../assets/images/logo.png";
 import CartWidget from "../CartWidget";
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink, Link } from "react-router-dom";
@@ -60,7 +59,7 @@ function NavBar() {
         <section className="container-brand">
 
           <div className="brand">
-            <Link to='/'><img src={logo} alt="Logo de Vibes" /></Link>
+            <Link to='/'><img src="https://i.ibb.co/RDxzZyq/logo.png" alt="Logo de Vibes" /></Link>
           </div>
 
         </section>
