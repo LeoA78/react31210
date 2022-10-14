@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+/*import { initializeApp } from "firebase/app";
 import { addDoc, getFirestore } from "firebase/firestore";
 import { getDocs, collection, query, where, doc, getDoc } from "firebase/firestore";
 
@@ -93,5 +93,5 @@ export async function checkout(collectionName, data) {
 }
 
 
-
+*/
 

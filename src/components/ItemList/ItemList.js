@@ -5,19 +5,18 @@ function ItemList({items}) {
     return(
         <section className='item-list'>
 
-            {items.map( ({id,title,price,pictureUrl,description}) => {
+            {items.map( ({id,name,unitPrice,imageUrl,description}) => {
                 return(
                 <Item 
                 key={id}
                 id={id}
-                title={title} 
-                price={price} 
-                pictureUrl={pictureUrl} 
+                name={name} 
+                unitPrice={unitPrice} 
+                imageUrl={imageUrl} 
                 description={description} />
                 )
             })}
-
-        </section>
+  </section>
     );
 }
 

@@ -19,10 +19,17 @@ function ItemListContainer() {
     
     setLoading(true);
 
-    getProducts(categoryId)
+  /*  getProducts(categoryId)
       .then(result => setListProducts(result))
       .finally(() => setLoading(false));
+*/
+
+    fetch("http://localhost:8080/product/all?page=0&size=10")
+      .then((response) => response.json())
+      .then((result) => setListProducts(result.data.results))
+      .finally(() => setLoading(false));
       
+      console.log("Product list>>>",listProducts);
 
   }, [categoryId]);
 

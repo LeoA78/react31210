@@ -11,6 +11,7 @@ function NavBar() {
   const [closed, setClosed] = useState(true);
   const [categories, setCategories] = useState([]);
 
+  /*
   useEffect(() => {
     getCategories().then(result => {
       setCategories(result);
@@ -18,7 +19,7 @@ function NavBar() {
     )
   }, []);
 
-
+*/
 
     window.onscroll = function() { /* Función para cambiar tamaño del navbar */
       if(window.scrollY > 100){
