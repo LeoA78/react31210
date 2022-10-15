@@ -1,37 +1,33 @@
 import { SyncLoader } from "react-spinners";
 import ItemDetail from "../ItemDetail";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { getProductSelected } from "../../store/slices/product/thunks";
+import { useSelector, useDispatch } from 'react-redux'
 import "./styles.css";
 
 function ItemListContainer() {
 
-  const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+  const { productSelected, isLoading } = useSelector(state => state.product);
+
   const { productId } = useParams();
 
   useEffect(() => {
 
+      dispatch(getProductSelected(productId));
 
-
-    setLoading(true);
-
-    fetch("http://localhost:8080/product/" + productId)
-      .then((response) => response.json())
-      .then((result) => setProduct(result.data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-
-  }, [productId]);
+  }, [dispatch, productId]);
 
   return (
     <section className="detail-container">
       {
-        loading
+        isLoading
           ? <div className='loader'>
             <SyncLoader color="#9381FF" />
           </div>
-          : <ItemDetail item={product} />
+          : <ItemDetail item={productSelected} />
       }
     </section>
   );
