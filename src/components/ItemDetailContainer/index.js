@@ -2,7 +2,6 @@ import { SyncLoader } from "react-spinners";
 import ItemDetail from "../ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../../firebase/firebase.js";
 import "./styles.css";
 
 function ItemListContainer() {
@@ -14,10 +13,13 @@ function ItemListContainer() {
   useEffect(() => {
 
 
+
     setLoading(true);
 
-    getProduct(productId) 
-      .then(res => setProduct(res))
+    fetch("http://localhost:8080/product/" + productId)
+      .then((response) => response.json())
+      .then((result) => setProduct(result.data))
+      .catch((error) => console.log(error))
       .finally(() => setLoading(false));
 
   }, [productId]);

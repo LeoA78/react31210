@@ -49,13 +49,13 @@ function ItemDetail({ item }) {
 
         <section className='detail-content box'>
             <div className='detail-image'>
-                <img src={item.pictureUrl} alt="" />
+                <img src={item.imageUrl} alt="" />
             </div>
             <div className='detail-box'>
                 <div className='detail'>
-                    <h2 className='detail-title'>{item.title}</h2>
+                    <h2 className='detail-title'>{item.name}</h2>
                     <p className='detail-description'>{item.description}</p>
-                    <p className='detail-price'>${item.price}</p>
+                    <p className='detail-price'>${item.unitPrice}</p>
                 </div>
 
                 {visibleCounter ? <ItemCount onAdd={onAdd} modifyAmount={modifyAmount} amount={amount} stock={item.stock} /> : <button className='buy-btn'><Link to='/cart'>Comprar Ahora</Link></button>}

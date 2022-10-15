@@ -19,11 +19,11 @@ function CartItem({ item, updateCart, removeFromCart }) {
         <div className="cart-item">
 
             <div className="cart-item-image">
-                <img src={item.pictureUrl} alt="product" />
+                <img src={item.imageUrl} alt="product" />
             </div>
 
             <div className="cart-item-details">
-                <h2>{item.title}</h2>
+                <h2>{item.name}</h2>
                 <p>{item.description}</p>
 
                 <label>
@@ -43,7 +43,7 @@ function CartItem({ item, updateCart, removeFromCart }) {
             </div>
 
             <div className="cart-item-price">
-                <h2>${item.price}</h2>
+                <h2>${item.unitPrice}</h2>
             </div>
 
         </div>
