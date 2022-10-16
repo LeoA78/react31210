@@ -1,15 +1,16 @@
 import './styles.css';
 import ItemCount from '../ItemCount';
-import React, { useState, useContext } from 'react';
+import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
-import { context } from '../CartContext';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { addToCart } from "../../store/slices/cart/cartSlice";
 
 function ItemDetail({ item }) {
     const [amount, setAmount] = useState(1);
     const [visibleCounter, setVisibleCounter] = useState(true);
     const [existProduct, setExistProduct] = useState(true);
-    const { addToCart } = useContext(context);
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
@@ -22,7 +23,7 @@ function ItemDetail({ item }) {
 
     const onAdd = (qty) => {
         setVisibleCounter(false);
-        addToCart({ ...item, amount: qty });
+        dispatch(addToCart({ ...item, amount: qty }))
     }
 
     const modifyAmount = (value) => {

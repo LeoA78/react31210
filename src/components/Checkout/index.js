@@ -1,16 +1,18 @@
 import './styles.css';
-import { useContext, useState, useEffect } from "react";
-import { context } from "../CartContext";
+import {  useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { serverTimestamp } from 'firebase/firestore';
 import { checkout } from '../../firebase/firebase';
+import { clearCart } from '../../store/slices/cart/cartSlice';
 
 
 
 function Checkout() {
 
-    const { getCart, getTotal, clearCart } = useContext(context);
+    const { cart, total} = useSelector(state => state.cart);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [buyer, setBuyer] = useState({
         name: '',
@@ -41,8 +43,8 @@ function Checkout() {
         if (verifyBuyer(buyer)) {
             const order = {
                 buyer: buyer,
-                products: getCart(),
-                total: getTotal(),
+                products: cart,
+                total: total,
                 date: serverTimestamp()
             }
             checkout('sales', order)
@@ -53,7 +55,7 @@ function Checkout() {
 
                     setTimeout(() => {
                         navigate('/');
-                        clearCart();
+                        dispatch(clearCart());
                     }, 15000);<stroge></stroge>
                 })
 
@@ -87,7 +89,7 @@ function Checkout() {
     };
 
 
-    if (getCart().length === 0) {
+    if (cart.length === 0) {
         return (
             <div className="checkout-container">
                 <div className="checkout-empty box">
@@ -120,7 +122,7 @@ function Checkout() {
                 </div>
 
                 <div className="checkout-footer">
-                    <h3>Total de Compra: ${getTotal()}</h3>
+                    <h3>Total de Compra: ${total}</h3>
                     {stateSales && <span>{stateSales}</span>}
                 </div>
 

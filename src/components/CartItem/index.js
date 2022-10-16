@@ -1,53 +1,56 @@
-import React from 'react'
-import './styles.css'
+import React from "react";
+import "./styles.css";
+import { useDispatch } from "react-redux";
+import { removeFromCart, updateCart } from "../../store/slices/cart/cartSlice";
 
-function CartItem({ item, updateCart, removeFromCart }) {
+function CartItem({ item }) {
+  const dispatch = useDispatch();
 
-    const handleChange = (e) => {
-        const { value } = e.target;
+  const handleChange = (e) => {
+    const { value } = e.target;
 
-        if( value <= item.stock && value > 0 ) {
-        const newItem = item.amount = parseInt(e.target.value);
-        updateCart(newItem);
-        }
+    if (value <= item.stock && value > 0) {
 
+      const newItem = { ...item, amount: parseInt(value)};
+      dispatch(updateCart(newItem));
     }
+  };
 
+  return (
+    <div className="cart-item">
+      <div className="cart-item-image">
+        <img src={item.imageUrl} alt="product" />
+      </div>
 
-    return (
+      <div className="cart-item-details">
+        <h2>{item.name}</h2>
+        <p>{item.description}</p>
 
-        <div className="cart-item">
+        <label>
+          Cantidad:
+          <input
+            className="cart-item-amount"
+            onChange={(e) => handleChange(e)}
+            type="number"
+            min="1"
+            value={item.amount}
+            max={item.stock}
+          />
+        </label>
 
-            <div className="cart-item-image">
-                <img src={item.imageUrl} alt="product" />
-            </div>
+        <span
+          className="cart-item-delete"
+          onClick={() => dispatch(removeFromCart(item))}
+        >
+          Eliminar Producto
+        </span>
+      </div>
 
-            <div className="cart-item-details">
-                <h2>{item.name}</h2>
-                <p>{item.description}</p>
-
-                <label>
-
-                    Cantidad: 
-                    <input
-                        className='cart-item-amount'
-                        onChange={(e) => handleChange(e)}
-                        type="number"
-                        min="1"
-                        value={item.amount}
-                        max={item.stock} />
-
-                </label>
-
-                <span className="cart-item-delete" onClick={() => removeFromCart(item)}>Eliminar Producto</span>
-            </div>
-
-            <div className="cart-item-price">
-                <h2>${item.unitPrice}</h2>
-            </div>
-
-        </div>
-    )
+      <div className="cart-item-price">
+        <h2>${item.unitPrice * item.amount}</h2>
+      </div>
+    </div>
+  );
 }
 
-export default CartItem
+export default CartItem;

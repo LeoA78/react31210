@@ -12,7 +12,6 @@ function ItemListContainer() {
   const dispatch = useDispatch();
   const { products, isLoading } = useSelector(state => state.product);
   const { category } = useParams();
-  console.log('category', category);
 
     useEffect(() => {
       
