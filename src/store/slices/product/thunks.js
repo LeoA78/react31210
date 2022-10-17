@@ -13,7 +13,7 @@ export const getProducts = (categoryName) => {
     if (categoryName) {
       result = await getData(`${URL_API_PRODUCTS}category/${categoryName}?page=0&size=12` );
     } else {
-      result = await getData(`${URL_API_PRODUCTS}all?page=0&size=12`);
+      result = await getData(`${URL_API_PRODUCTS}all?page=0&size=32`);
     }
     dispatch(setProducts(result.data.results));
   };

@@ -2,6 +2,8 @@ import React from "react";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
@@ -15,7 +17,8 @@ function App() {
     <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<ItemListContainer/>} />
+          <Route path="/" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/category/:category" element={<ItemListContainer />} />
           <Route path="/product/:productId" element={<ItemDetailContainer />} />
           <Route path="/cart" element={<Cart />} />
