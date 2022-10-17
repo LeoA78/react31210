@@ -16,12 +16,14 @@ import Alert from "@mui/material/Alert";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-//import { createUser, setMessage } from '../../slices/user/userSlice';
+import { registerUserDB } from "../../store/slices/user/thunks";
+import { setMessage } from "../../store/slices/user/userSlice";
 
 export default function SignUp() {
   const [value, setValue] = React.useState("1");
-  const [message, setMessage] = React.useState(null);
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+  const { message } = useSelector(state => state.user);
 
   const onSubmit = (data) => {
     if (verifyData(data)) {
@@ -39,22 +41,13 @@ export default function SignUp() {
         },
       };
 
-      console.log(user);
+    dispatch(registerUserDB(user));
 
-      setMessage({
-        type: "success",
-        detail:
-          "Usuario creado con éxito. Te enviamos un mail para que puedas activar tu cuenta.",
-      });
     }
   };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const isExistingUser = (email) => {
-    //  return users.find(user => user.email === email);
   };
 
   const verifyData = (data) => {
@@ -68,108 +61,84 @@ export default function SignUp() {
     const postcode = data.postcode;
 
     if (!name) {
-      setMessage({ type: "error", detail: "Por favor completa tu nombre" });
+      dispatch(setMessage({ type: "error", detail: "Por favor completa tu nombre" }));
       handleChange(null,"1");
       return false;
     }
 
     if (!lastName) {
-      setMessage({ type: "error", detail: "Por favor, completa tu apellido" });
+      dispatch(setMessage({ type: "error", detail: "Por favor, completa tu apellido" }));
       handleChange(null,"1");
       return false;
     }
     if (!email) {
-      setMessage({
+      dispatch(setMessage({
         type: "error",
         detail: "Por favor, completa la dirección de correo electrónico",
-      });
+      }));
       handleChange(null,"1");
       return false;
     }
 
-    const emailRegex =
-      /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/i;
+
     if (!emailRegex.test(email)) {
-      setMessage({ type: "error", detail: "El email ingresado no es válido" });
+      dispatch(setMessage({ type: "error", detail: "El email ingresado no es válido" }));
       handleChange(null,"1");
       return false;
     }
 
     if (!password) {
-      setMessage({
+      dispatch(setMessage({
         type: "error",
         detail: "Por favor, completa la contraseña",
-      });
+      }));
       handleChange(null,"1");
       return false;
     }
 
     if (!confirmPassword) {
-      setMessage({
+      dispatch(setMessage({
         type: "error",
         detail: "Por favor, completa la verificación de contraseña",
-      });
+      }));
       handleChange(null,"1");
       return false;
     }
 
     if (password !== confirmPassword) {
-      setMessage({ type: "error", detail: "Las contraseñas no coinciden" });
+      dispatch(setMessage({ type: "error", detail: "Las contraseñas no coinciden" }));
       handleChange(null,"1");
       return false;
     }
 
     if (!street) {
-      setMessage({ type: "error", detail: "Por favor, completa la Dirección" });
+      dispatch(setMessage({ type: "error", detail: "Por favor, completa la Dirección" }));
       handleChange(null,"2");
       return false;
     }
 
     if (!postcode) {
-      setMessage({
+      dispatch(setMessage({
         type: "error",
         detail: "Por favor, completa el Código Postal",
-      });
+      }));
       handleChange(null,"2");
       return false;
     }
 
     if (!streetNumber) {
-      setMessage({
+      dispatch(setMessage({
         type: "error",
         detail: "Por favor, completa el número de dirección",
-      });
+      }));
       handleChange(null,"2");
-      return false;
-    }
-
-    if (isExistingUser(email)) {
-      setMessage({ type: "error", detail: "El usuario ya existe" });
       return false;
     }
 
     return true;
   };
 
-  /*
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Acá va el submit");
-    const data = new FormData(event.currentTarget);
-
-    if (verifyData(data)) {
-      const user = {
-        name: data.get("firstName"),
-        lastName: data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-      };
-      console.log('Usuario: ',user);
-      // dispatch(createUser(user));
-      // navigate('/');
-      // dispatch(setMessage({ message: ''}));
-    }
-  };*/
 
   return (
     <div className="container">
