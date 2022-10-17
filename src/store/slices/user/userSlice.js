@@ -4,7 +4,7 @@ const initialState = {
     isLoading: false,
     user: {},
     isLogged: false,
-    message: null,
+    message: null
 }
 
 
@@ -15,7 +15,7 @@ export const userSlice = createSlice({
         startLoadingUser: (state) => {
             state.isLoading = true;
         },
-        registerUser: (state, action) => {
+        registerUser: (state) => {
             state.isLoading = false;
         },
         loginUser: (state, action) => {
@@ -23,7 +23,7 @@ export const userSlice = createSlice({
             state.user = action.payload;
             state.isLogged = true;
         },
-        logoutUser: (state) => {
+        logoutUser: (state, action) => {
             state.isLoading = false;
             state.user = {};
             state.isLogged = false;

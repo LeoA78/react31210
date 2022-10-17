@@ -10,6 +10,7 @@ header {
   position: fixed;
   transition: all 0.5s ease-in-out;
   width: 100%;
+  z-index: 100;
 }
 
 .extend-header{
@@ -43,6 +44,18 @@ header .container-icons{
   flex-direction: row-reverse;
   width: 40%;
 }
+
+header .container-icons .link-item{
+  font-family: 'Josefin Sans', sans-serif;
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+}
+
+header .container-icons .link-item:hover{
+ text-decoration: underline;
+}
+
 
 header .brand img {
   height: 35px;
@@ -78,14 +91,33 @@ header .menu .menu-list .menu-list-item a{
   display: none;
 }
 
+.container-icons .box-icons {
+  width: 50%;
+}
+
+.container-icons .box-icons .right-menu{
+font-size: 14px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+
+}
+
 @media (max-width: 1000px) {
+
+  .container-icons .box-icons {
+    width: 70%;
+  }
 
   header .box-icons {
     align-items: center;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     width: 17%;
   }	
+
+
 
   .checkbtn {
     display: block;
@@ -127,4 +159,24 @@ header .menu .menu-list .menu-list-item a{
     left: 0;
     transition: all 0.25s;
   }
+}
+
+@media (max-width: 750px) {
+
+  .container-icons .box-icons {
+    width: 90%;
+    justify-content: end;
+  }
+
+  .container-icons .box-icons .right-menu{
+    display: flex;
+    flex-direction: column;
+
+    
+  }
+
+  header {
+    padding-right: 10px;
+  }
+
 }

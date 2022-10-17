@@ -23,11 +23,10 @@ export default function SignUp() {
   const [value, setValue] = React.useState("1");
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  const { message } = useSelector(state => state.user);
+  const { message } = useSelector((state) => state.user);
 
   const onSubmit = (data) => {
     if (verifyData(data)) {
-
       const user = {
         name: data.name,
         lastName: data.lastName,
@@ -41,8 +40,7 @@ export default function SignUp() {
         },
       };
 
-    dispatch(registerUserDB(user));
-
+      dispatch(registerUserDB(user));
     }
   };
 
@@ -61,98 +59,120 @@ export default function SignUp() {
     const postcode = data.postcode;
 
     if (!name) {
-      dispatch(setMessage({ type: "error", detail: "Por favor completa tu nombre" }));
-      handleChange(null,"1");
+      dispatch(
+        setMessage({ type: "error", detail: "Por favor completa tu nombre" })
+      );
+      handleChange(null, "1");
       return false;
     }
 
     if (!lastName) {
-      dispatch(setMessage({ type: "error", detail: "Por favor, completa tu apellido" }));
-      handleChange(null,"1");
+      dispatch(
+        setMessage({ type: "error", detail: "Por favor, completa tu apellido" })
+      );
+      handleChange(null, "1");
       return false;
     }
     if (!email) {
-      dispatch(setMessage({
-        type: "error",
-        detail: "Por favor, completa la dirección de correo electrónico",
-      }));
-      handleChange(null,"1");
+      dispatch(
+        setMessage({
+          type: "error",
+          detail: "Por favor, completa la dirección de correo electrónico",
+        })
+      );
+      handleChange(null, "1");
       return false;
     }
 
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/i;
 
     if (!emailRegex.test(email)) {
-      dispatch(setMessage({ type: "error", detail: "El email ingresado no es válido" }));
-      handleChange(null,"1");
+      dispatch(
+        setMessage({ type: "error", detail: "El email ingresado no es válido" })
+      );
+      handleChange(null, "1");
       return false;
     }
 
     if (!password) {
-      dispatch(setMessage({
-        type: "error",
-        detail: "Por favor, completa la contraseña",
-      }));
-      handleChange(null,"1");
+      dispatch(
+        setMessage({
+          type: "error",
+          detail: "Por favor, completa la contraseña",
+        })
+      );
+      handleChange(null, "1");
       return false;
     }
 
     if (!confirmPassword) {
-      dispatch(setMessage({
-        type: "error",
-        detail: "Por favor, completa la verificación de contraseña",
-      }));
-      handleChange(null,"1");
+      dispatch(
+        setMessage({
+          type: "error",
+          detail: "Por favor, completa la verificación de contraseña",
+        })
+      );
+      handleChange(null, "1");
       return false;
     }
 
     if (password !== confirmPassword) {
-      dispatch(setMessage({ type: "error", detail: "Las contraseñas no coinciden" }));
-      handleChange(null,"1");
+      dispatch(
+        setMessage({ type: "error", detail: "Las contraseñas no coinciden" })
+      );
+      handleChange(null, "1");
       return false;
     }
 
     if (!street) {
-      dispatch(setMessage({ type: "error", detail: "Por favor, completa la Dirección" }));
-      handleChange(null,"2");
+      dispatch(
+        setMessage({
+          type: "error",
+          detail: "Por favor, completa la Dirección",
+        })
+      );
+      handleChange(null, "2");
       return false;
     }
 
     if (!postcode) {
-      dispatch(setMessage({
-        type: "error",
-        detail: "Por favor, completa el Código Postal",
-      }));
-      handleChange(null,"2");
+      dispatch(
+        setMessage({
+          type: "error",
+          detail: "Por favor, completa el Código Postal",
+        })
+      );
+      handleChange(null, "2");
       return false;
     }
 
     if (!streetNumber) {
-      dispatch(setMessage({
-        type: "error",
-        detail: "Por favor, completa el número de dirección",
-      }));
-      handleChange(null,"2");
+      dispatch(
+        setMessage({
+          type: "error",
+          detail: "Por favor, completa el número de dirección",
+        })
+      );
+      handleChange(null, "2");
       return false;
     }
 
     return true;
   };
 
-
   return (
-    <div className="container">
-      <Container
-        component="main"
-        maxWidth="sm"
-        sx={{
-          backgroundColor: "white",
-          padding: "20px",
-          borderRadius: "5px",
-          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.3)",
-          marginTop: "40px",
-        }}
-      >
+    <div className="container-forms">
+    <Container
+      component="main"
+      maxWidth="sm"
+      sx={{
+        backgroundColor: "white",
+        padding: "20px",
+        borderRadius: "5px",
+        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.3)",
+      }}
+    >
+      <Box>
         <CssBaseline />
 
         <Box
@@ -160,7 +180,6 @@ export default function SignUp() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            marginBottom: "20px",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -313,7 +332,8 @@ export default function SignUp() {
             </Box>
           </form>
         </Box>
-      </Container>
+      </Box>
+    </Container>
     </div>
   );
 }

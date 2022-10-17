@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import Cart from "./components/Cart";
@@ -17,7 +18,9 @@ function App() {
     <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Login/>} />
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/logout" element={<Logout/>} />
           <Route path="/register" element={<Register/>} />
           <Route path="/category/:category" element={<ItemListContainer />} />
           <Route path="/product/:productId" element={<ItemDetailContainer />} />
