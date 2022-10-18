@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { loginUserDB } from "../../store/slices/user/thunks";
 import { useEffect } from "react";
+import { setMessage } from "../../store/slices/user/userSlice";
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -29,7 +30,12 @@ export default function SignIn() {
       navigate("/");
     }
 
-  }, [isLogged]);
+    //En caso de haber mensaje de error, lo borramos al cambiar de ruta
+    dispatch(
+      setMessage(null)
+    );
+
+  }, [isLogged,navigate,dispatch]);
 
 
 

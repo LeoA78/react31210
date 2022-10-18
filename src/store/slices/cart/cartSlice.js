@@ -31,6 +31,8 @@ export const cartSlice = createSlice({
         },
         clearCart: (state) => {
             state.cart = [];
+            state.amount = 0;
+            state.total = 0;
         },
         updateCart: (state, action) => {
             state.cart = state.cart.map((item) => {

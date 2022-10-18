@@ -1,12 +1,20 @@
 import CartItem from "../CartItem";
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function Cart() {
   const { cart, total } = useSelector((state) => state.cart);
+  const { isLogged } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
+  useEffect(() => {
 
+    if(!isLogged) {
+      navigate("/login");
+    }
+  }, [isLogged, navigate]);
  
 
 

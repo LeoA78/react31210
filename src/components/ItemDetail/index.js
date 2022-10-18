@@ -59,7 +59,11 @@ function ItemDetail({ item }) {
                     <p className='detail-price'>${item.unitPrice}</p>
                 </div>
 
-                {visibleCounter ? <ItemCount onAdd={onAdd} modifyAmount={modifyAmount} amount={amount} stock={item.stock} /> : <button className='buy-btn'><Link to='/cart'>Comprar Ahora</Link></button>}
+                {
+                visibleCounter 
+                ? <ItemCount onAdd={onAdd} modifyAmount={modifyAmount} amount={amount} stock={item.stock} /> 
+                : <button className='buy-btn'><Link to='/cart'>Comprar Ahora</Link></button>
+                }
 
 
             </div>

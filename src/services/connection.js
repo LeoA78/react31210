@@ -1,7 +1,5 @@
 
-
-
-
+  const URL_API_ADD_ORDER = "http://localhost:8080/order/add";
 
 export const getData = async (url_api) => {
   try {
@@ -15,19 +13,22 @@ export const getData = async (url_api) => {
 
 
 
+export const postCreateOrder = (order) => {
+  const result = fetch(`${URL_API_ADD_ORDER}/`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+  })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((error) => {
+          console.error("Error:", error);
+      });
+
+  return result;
+};
 
 
-/*
-export const getItem = (productId) => {
-  return new Promise((resolve, reject) => {
-      if (true) {
-        setTimeout(() => {
-          idCategory 
-          ? resolve(products.filter(product => product.category === idCategory))
-          : resolve(products);
-        }, 2000);
-      } else {
-        reject("Ocurrió un error! no pudimos cargar los productos");
-      }
-    });
-}; */
+

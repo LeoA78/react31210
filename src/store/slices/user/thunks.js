@@ -46,7 +46,7 @@ export const loginUserDB = (user) => {
       dispatch(
         setMessage({
           type: "error",
-          detail: `No se pudo loguear el usuario. ${result.message}`,
+          detail: `${result.message}`,
         })
       );
     }

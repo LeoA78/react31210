@@ -17,13 +17,20 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { registerUserDB } from "../../store/slices/user/thunks";
-import { setMessage } from "../../store/slices/user/userSlice";
+import { clearMessage, setMessage } from "../../store/slices/user/userSlice";
+import { useEffect } from "react";
 
 export default function SignUp() {
   const [value, setValue] = React.useState("1");
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { message } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    //En caso de haber mensaje de error, lo borramos al cambiar de ruta
+    dispatch(clearMessage());
+  }, [dispatch]);
+
 
   const onSubmit = (data) => {
     if (verifyData(data)) {
@@ -84,7 +91,7 @@ export default function SignUp() {
       return false;
     }
 
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/i;
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@”]+(\.[^<>()[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/i;
 
     if (!emailRegex.test(email)) {
       dispatch(
@@ -324,7 +331,7 @@ export default function SignUp() {
 
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link to="/" variant="body2">
+                  <Link to="/login" variant="body2">
                     ¿Ya tienes una cuenta? Inicia Sesión
                   </Link>
                 </Grid>

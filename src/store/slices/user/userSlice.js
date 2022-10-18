@@ -31,11 +31,15 @@ export const userSlice = createSlice({
         setMessage: (state, action) => {
             state.isLoading = false;
             state.message = action.payload;
+        },
+        clearMessage: (state) => {
+            state.message = null;
         }
+
     },
 });
 
-export const { startLoadingUser, registerUser, loginUser, logoutUser, setMessage } = userSlice.actions;
+export const { startLoadingUser, registerUser, loginUser, logoutUser, setMessage, clearMessage } = userSlice.actions;
 
 
 
