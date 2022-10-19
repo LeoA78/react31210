@@ -1,5 +1,5 @@
 import { setMessage, startLoadingOrder, createOrder } from "./orderSlice";
-import { postCreateOrder } from "../../../services/connection";
+import { postCreateOrder } from "../../../services/orderService";
 import { clearCart } from "../cart/cartSlice";
 import { clearMessage, clearOrder } from "./orderSlice";
 

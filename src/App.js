@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Register from "./components/Register";
 import Checkout from "./components/Checkout";
+import Verify from "./components/Verify";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import { Provider } from 'react-redux';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/logout" element={<Logout/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/verify/:token" element={<Verify/>} />
           <Route path="/category/:category" element={<ItemListContainer />} />
           <Route path="/product/:productId" element={<ItemDetailContainer />} />
           <Route path="/cart" element={<Cart />} />

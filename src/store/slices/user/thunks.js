@@ -1,7 +1,6 @@
-import { startLoadingUser, registerUser } from "./userSlice";
-import { setMessage, loginUser } from "./userSlice";
+import { startLoadingUser, registerUser, setMessage, loginUser } from "./userSlice";
+import { postRegisterUser, postLoginUser, postVerifyUser } from "../../../services/userService";
 
-const URL_API_USERS = `http://localhost:8080/user/`;
 
 export const registerUserDB = (user) => {
   return async (dispatch) => {
@@ -55,36 +54,32 @@ export const loginUserDB = (user) => {
   };
 };
 
-const postRegisterUser = (user) => {
-  const result = fetch(`${URL_API_USERS}/register/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  })
-    .then((response) => response.json())
-    .then((data) => data)
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+export const verifyUserDB = (token) => {
+  return async (dispatch) => {
+    
+    const result = await postVerifyUser(token);
 
-  return result;
-};
+    console.log('Respuesta verificacion', result);
 
-const postLoginUser = (user) => {
-  const result = fetch(`${URL_API_USERS}/login/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  })
-    .then((response) => response.json())
-    .then((data) => data)
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+    if(result.responseCode === 201) {
+      dispatch(setMessage({
+        type: 'success',
+        detail: 'Usuario verificado con éxito. Ya puedes iniciar sesión.'
+      }));
+    } else {
+      dispatch(setMessage({
+        type: 'error',
+        detail: 'No se pudo verificar el usuario.'
+      }));
+    }
+  }
+}
 
-  return result;
-};
+  
+
+
+
+
+
+
+
