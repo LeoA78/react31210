@@ -5,7 +5,7 @@ function ItemList({items}) {
     return(
         <section className='item-list'>
 
-            {items.map( ({id,name,unitPrice,imageUrl,description}) => {
+            {items.map( ({id,name,unitPrice,imageUrl,description,stock}) => {
                 return(
                 <Item 
                 key={id}
@@ -13,7 +13,8 @@ function ItemList({items}) {
                 name={name} 
                 unitPrice={unitPrice} 
                 imageUrl={imageUrl} 
-                description={description} />
+                description={description}
+                stock={stock}/>
                 )
             })}
   </section>

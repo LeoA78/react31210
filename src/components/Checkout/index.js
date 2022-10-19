@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
 import { createOrderDB } from "../../store/slices/order/thunks";
-import { Link } from "react-router-dom";
 
 function Checkout() {
   const { cart, total } = useSelector((state) => state.cart);
@@ -41,16 +40,7 @@ function Checkout() {
 
   
   if (cart.length === 0) {
-    return (
-      <div className="checkout-container">
-        <div className="checkout-empty box">
-          <h2 className="checkout-empty-title">Tu carrito está vacío</h2>
-          <Link to="/" className="checkout-empty-subtitle">
-            ¿Por qué no echas un vistazo en la tienda?
-          </Link>
-        </div>
-      </div>
-    );
+    navigate("/");
   }
 
 
@@ -123,7 +113,7 @@ function Checkout() {
                 ¡Gracias por comprar! Recibirás un mail con los datos de
                 facturación y el detalle de tu orden de compra.
               </p>
-              <p>Te redireccionaremos a la página principal en 30 segundos</p>
+              <p>Te redireccionaremos a la página principal en 20 segundos</p>
             </>
           )}
         </div>

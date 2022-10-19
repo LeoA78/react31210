@@ -42,6 +42,16 @@
     font-size: 1.6rem;
 }
 
+.no-stock{
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.item-stock{
+    color: rgb(75, 6, 6);
+    font-size: 1.3rem;
+}
+
 .item-title{
     color: rgb(27, 27, 27);
     font-size: 1.1rem;

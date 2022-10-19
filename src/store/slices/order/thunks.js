@@ -24,7 +24,7 @@ export const createOrderDB = (order) => {
         dispatch(clearMessage());
         dispatch(clearOrder());
         dispatch(clearCart());
-      }, 30000);
+      }, 20000);
 
 
     } else {
