@@ -1,6 +1,8 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from '@mui/icons-material/Save';
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -20,28 +22,21 @@ import { setMessage } from "../../store/slices/user/userSlice";
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const { message, isLogged } = useSelector((state) => state.user);
+  const { message, isLogged, isLoading } = useSelector((state) => state.user);
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   useEffect(() => {
-
     if (isLogged) {
       navigate("/");
     }
 
     //En caso de haber mensaje de error, lo borramos al cambiar de ruta
-    dispatch(
-      setMessage(null)
-    );
-
-  }, [isLogged,navigate,dispatch]);
-
-
+    dispatch(setMessage(null));
+  }, [isLogged, navigate, dispatch]);
 
   const onSubmit = (data) => {
     dispatch(loginUserDB(data));
-
   };
 
   return (
@@ -94,23 +89,33 @@ export default function SignIn() {
               {...register("password")}
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Recordarme"
-            />
             <Typography component="h6" variant="h6">
               {message && (
                 <Alert severity={message.type}>{message.detail}</Alert>
               )}
             </Typography>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Iniciar Sesión
-            </Button>
+
+            {isLoading ? (
+              <LoadingButton
+                fullWidth
+                variant="contained"
+                loadingPosition="start"
+                startIcon={<SaveIcon />}
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Iniciar Sesión
+              </LoadingButton>
+            ) : (
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Iniciar Sesión
+              </Button>
+            )}
+
             <Grid container>
               <Grid item>
                 <Link to="/register" variant="body2">

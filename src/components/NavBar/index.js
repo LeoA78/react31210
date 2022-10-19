@@ -1,14 +1,18 @@
 import "./navbar.css";
 import CartWidget from "../CartWidget";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../store/slices/user/userSlice";
+import { clearCart } from "../../store/slices/cart/cartSlice";
 
 function NavBar() {
   const [closed, setClosed] = useState(true);
   const [categories, setCategories] = useState([]);
   const { isLogged } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:8080/category/all")
@@ -16,6 +20,18 @@ function NavBar() {
       .then((result) => setCategories(result.data))
       .catch((error) => console.log(error));
   }, []);
+
+
+  const logout = () => {
+    if (isLogged) {
+      dispatch(logoutUser());
+      dispatch(clearCart());
+      navigate("/Login");
+    }
+  };
+
+
+
 
   window.onscroll = function () {
     /* Función para cambiar tamaño del navbar */
@@ -67,7 +83,7 @@ function NavBar() {
             {isLogged ? (
               <div className="right-menu">
                 <CartWidget />
-                <Link className="link-item" to="/logout" alt="Cerrar Sesión">
+                <Link onClick={logout} to="/login" className="link-item" alt="Cerrar Sesión">
                   Cerrar Sesión
                 </Link>
               </div>

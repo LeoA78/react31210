@@ -4,12 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from '@mui/icons-material/Save';
 import { createOrderDB } from "../../store/slices/order/thunks";
 
 function Checkout() {
   const { cart, total } = useSelector((state) => state.cart);
   const { user, isLogged } = useSelector((state) => state.user);
-  const { message, order } = useSelector((state) => state.order);
+  const { message, order, isLoading } = useSelector((state) => state.order);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -18,8 +21,6 @@ function Checkout() {
       navigate("/login");
       return;
     }
-
-
   }, [isLogged, navigate, dispatch, message]);
 
   const generateOrder = async () => {
@@ -38,11 +39,9 @@ function Checkout() {
     dispatch(createOrderDB(order));
   };
 
-  
   if (cart.length === 0) {
     navigate("/");
   }
-
 
   return (
     <div className="checkout-container">
@@ -96,11 +95,28 @@ function Checkout() {
               )}
             </Typography>
 
-            {!order && (
-              <button className="buy-btn" onClick={generateOrder}>
-                Realizar Compra
-              </button>
-            )}
+            {!order &&
+              (isLoading ? (
+                <LoadingButton
+                  loading
+                  loadingPosition="start"
+                  startIcon={<SaveIcon />}
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Realizar Compra
+                </LoadingButton>
+              ) : (
+                <Button
+                  className="buy-btn"
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={generateOrder}
+                >
+                  Realizar Compra
+                </Button>
+              ))}
           </div>
         </div>
 

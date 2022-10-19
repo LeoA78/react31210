@@ -1,6 +1,8 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from '@mui/icons-material/Save';
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -24,13 +26,12 @@ export default function SignUp() {
   const [value, setValue] = React.useState("1");
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  const { message } = useSelector((state) => state.user);
+  const { message, isLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
     //En caso de haber mensaje de error, lo borramos al cambiar de ruta
     dispatch(clearMessage());
   }, [dispatch]);
-
 
   const onSubmit = (data) => {
     if (verifyData(data)) {
@@ -91,7 +92,8 @@ export default function SignUp() {
       return false;
     }
 
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@”]+(\.[^<>()[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/i;
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@”]+(\.[^<>()[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/i;
 
     if (!emailRegex.test(email)) {
       dispatch(
@@ -169,178 +171,194 @@ export default function SignUp() {
 
   return (
     <div className="container-forms">
-    <Container
-      component="main"
-      maxWidth="sm"
-      sx={{
-        backgroundColor: "white",
-        padding: "20px",
-        borderRadius: "5px",
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.3)",
-      }}
-    >
-      <Box>
-        <CssBaseline />
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Registro de Usuarios
-          </Typography>
-        </Box>
-
+      <Container
+        component="main"
+        maxWidth="sm"
+        sx={{
+          backgroundColor: "white",
+          padding: "20px",
+          borderRadius: "5px",
+          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.3)",
+        }}
+      >
         <Box>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList onChange={handleChange} aria-label="Pestañas de datos">
-                  <Tab label="Usuario" value="1" />
-                  <Tab label="Dirección" value="2" />
-                </TabList>
-              </Box>
+          <CssBaseline />
 
-              <TabPanel value="1">
-                <Box>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        autoComplete="given-name"
-                        name="name"
-                        fullWidth
-                        id="name"
-                        label="Nombre"
-                        autoFocus
-                        {...register("name")}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        id="lastName"
-                        label="Apellido"
-                        name="lastName"
-                        autoComplete="family-name"
-                        {...register("lastName")}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        id="email"
-                        label="Correo Electrónico"
-                        name="email"
-                        autoComplete="email"
-                        {...register("email")}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        name="password"
-                        label="Contraseña"
-                        type="password"
-                        id="password"
-                        autoComplete="new-password"
-                        {...register("password")}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        name="confirmPassword"
-                        label="Repetir contraseña"
-                        type="password"
-                        id="confirmPassword"
-                        autoComplete="new-password"
-                        {...register("confirmPassword")}
-                      />
-                    </Grid>
-                  </Grid>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Registro de Usuarios
+            </Typography>
+          </Box>
+
+          <Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <TabContext value={value}>
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <TabList
+                    onChange={handleChange}
+                    aria-label="Pestañas de datos"
+                  >
+                    <Tab label="Usuario" value="1" />
+                    <Tab label="Dirección" value="2" />
+                  </TabList>
                 </Box>
-              </TabPanel>
 
-              <TabPanel value="2">
-                <Box>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        id="street"
-                        label="Calle"
-                        name="street"
-                        autoComplete="street-address"
-                        {...register("street")}
-                      />
+                <TabPanel value="1">
+                  <Box>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          autoComplete="given-name"
+                          name="name"
+                          fullWidth
+                          id="name"
+                          label="Nombre"
+                          autoFocus
+                          {...register("name")}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          fullWidth
+                          id="lastName"
+                          label="Apellido"
+                          name="lastName"
+                          autoComplete="family-name"
+                          {...register("lastName")}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          id="email"
+                          label="Correo Electrónico"
+                          name="email"
+                          autoComplete="email"
+                          {...register("email")}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          name="password"
+                          label="Contraseña"
+                          type="password"
+                          id="password"
+                          autoComplete="new-password"
+                          {...register("password")}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          name="confirmPassword"
+                          label="Repetir contraseña"
+                          type="password"
+                          id="confirmPassword"
+                          autoComplete="new-password"
+                          {...register("confirmPassword")}
+                        />
+                      </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        id="streetNumber"
-                        label="Número de calle"
-                        name="streetNumber"
-                        {...register("streetNumber")}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        name="apartment"
-                        label="Departamento"
-                        id="apartment"
-                        {...register("apartment")}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        name="postcode"
-                        label="Código Postal"
-                        id="postcode"
-                        autoComplete="postal-code"
-                        {...register("postcode")}
-                      />
-                    </Grid>
-                  </Grid>
-                </Box>
-              </TabPanel>
-            </TabContext>
+                  </Box>
+                </TabPanel>
 
-            <Box>
-              <Typography component="h6" variant="h6">
-                {message && (
-                  <Alert severity={message.type}>{message.detail}</Alert>
+                <TabPanel value="2">
+                  <Box>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          id="street"
+                          label="Calle"
+                          name="street"
+                          autoComplete="street-address"
+                          {...register("street")}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          id="streetNumber"
+                          label="Número de calle"
+                          name="streetNumber"
+                          {...register("streetNumber")}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          name="apartment"
+                          label="Departamento"
+                          id="apartment"
+                          {...register("apartment")}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          name="postcode"
+                          label="Código Postal"
+                          id="postcode"
+                          autoComplete="postal-code"
+                          {...register("postcode")}
+                        />
+                      </Grid>
+                    </Grid>
+                  </Box>
+                </TabPanel>
+              </TabContext>
+
+              <Box>
+                <Typography component="h6" variant="h6">
+                  {message && (
+                    <Alert severity={message.type}>{message.detail}</Alert>
+                  )}
+                </Typography>
+
+                { isLoading ? (
+                  <LoadingButton
+                    loading
+                    fullWidth
+                    loadingPosition="start"
+                    startIcon={<SaveIcon />}
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Registrarse
+                  </LoadingButton>
+                ) : (
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Registrarse
+                  </Button>
                 )}
-              </Typography>
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Registrarse
-              </Button>
-
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link to="/login" variant="body2">
-                    ¿Ya tienes una cuenta? Inicia Sesión
-                  </Link>
+                <Grid container justifyContent="flex-end">
+                  <Grid item>
+                    <Link to="/login" variant="body2">
+                      ¿Ya tienes una cuenta? Inicia Sesión
+                    </Link>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          </form>
+              </Box>
+            </form>
+          </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
     </div>
   );
 }

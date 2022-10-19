@@ -35,8 +35,6 @@ export const loginUserDB = (user) => {
 
     const result = await postLoginUser(user);
 
-    console.log(result)
-
     if (result.responseCode === 200) {
 
       dispatch(loginUser(result.data));

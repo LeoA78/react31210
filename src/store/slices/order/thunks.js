@@ -12,7 +12,6 @@ export const createOrderDB = (order) => {
     const result = await postCreateOrder(order);
 
     if (result.responseCode === 201) {
-      console.log('Esta es la orden >>', result.data);
       dispatch(createOrder(result.data));
       dispatch(
         setMessage({ type: "success", detail: "Order creada correctamente." })
